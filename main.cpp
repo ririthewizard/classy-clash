@@ -9,6 +9,8 @@ int main()
 
     Texture2D worldMap = LoadTexture("nature_tileset/WorldMap.png");
 
+    float speed{6.0};
+
     Vector2 worldMapPos{0.0, 0.0};
     SetTargetFPS(60);
     while (!WindowShouldClose())
@@ -22,9 +24,15 @@ int main()
         if (IsKeyDown(KEY_A)) direction.x -= 1.0;
         if (IsKeyDown(KEY_D)) direction.x += 1.0;
         if (IsKeyDown(KEY_W)) direction.y -= 1.0;
-        if (IsKeyDown(KEY_S)) direction.y += 0;
+        if (IsKeyDown(KEY_S)) direction.y += 1.0;
+
+        if (Vector2Length(direction) != 0.0)
+        {
+            //set worldMapPos = worldMapPos - direction
+            worldMapPos = Vector2Subtract(worldMapPos, Vector2Scale(Vector2Normalize(direction), speed));
+        }
         
-        DrawTextureEx(worldMap, worldMapPos, 0, 4, WHITE);
+        DrawTextureEx(worldMap, worldMapPos, 0, 6, WHITE);
 
 
         EndDrawing();
