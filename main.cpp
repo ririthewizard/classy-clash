@@ -14,7 +14,6 @@ private:
     Vector2 mWorldPos;
     // 1 : facing right, -1 : facing left
     float mRightLeft{1.f};
-
     // animation variables
     float mRunningTime{};
     int mFrame{};
@@ -38,8 +37,8 @@ int main()
     // knight idle texture
     Texture2D knight_idle = LoadTexture("characters/knight_idle_spritesheet.png");
 
-    float singleKnightWidth = (float)knight.width / 6.f; // the width of a single knight sprite as a float
-    float singleKnightHeight = (float)knight.height;     // the height of a single knight sprite as a float
+    float single_knight_width = (float)knight.width / 6.f; // the width of a single knight sprite as a float
+    float single_knight_height = (float)knight.height;     // the height of a single knight sprite as a float
 
     Vector2 knightPos{
         ((float)window_dimensions[0] / 2.0f) - 6.0f * (0.5f * (float)knight.width / 6.0f),
@@ -100,9 +99,9 @@ int main()
         }
 
         // Drawing knight
-        Rectangle knightSourceRect{frame * singleKnightWidth, 0.f, rightLeft * singleKnightWidth, singleKnightHeight}; // knight source rectangle
-        Rectangle knightDestPos{knightPos.x, knightPos.y, (6.f * singleKnightWidth), (6.f * singleKnightHeight)};      // knight destination is middle of screen
-        DrawTexturePro(knight, knightSourceRect, knightDestPos, Vector2{}, 0, WHITE);                                  // drawing knight to the middle of the screen with origin in top left corner (0,0)
+        Rectangle knight_source_rect{frame * single_knight_width, 0.f, rightLeft * single_knight_width, single_knight_height}; // knight source rectangle
+        Rectangle knight_dest_pos{knightPos.x, knightPos.y, (6.f * single_knight_width), (6.f * single_knight_height)};      // knight destination is middle of screen
+        DrawTexturePro(knight, knight_source_rect, knight_dest_pos, Vector2{}, 0, WHITE);                                  // drawing knight to the middle of the screen with origin in top left corner (0,0)
 
         EndDrawing();
     }
