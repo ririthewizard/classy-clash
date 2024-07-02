@@ -2,18 +2,15 @@
 #include "raymath.h"
 
 
-Character::Character()
+Character::Character(int windowWidth, int windowHeight)
 {
-    mSingleTextureWidth = (float)mTexture.width / 6.f;
-    mSingleTextureHeight = (float)mTexture.height;
-}
+    mSingleTextureWidth = static_cast<float>(mTexture.width) / mScale;
+    mSingleTextureHeight = static_cast<float>(mTexture.height);
 
-void Character::setScreenPos(int winWidth, int winHeight)
-{
     mScreenPos = {
-        ((float)winWidth / 2.0f) - 6.0f * (0.5f * mSingleTextureWidth),
-        ((float)winHeight / 2.0f) - 6.0f * (0.5f * mSingleTextureHeight)};
-};
+        (static_cast<float>(windowWidth) / 2.0f) - mScale * (0.5f * mSingleTextureWidth),
+        (static_cast<float>(windowHeight) / 2.0f) - mScale * (0.5f * mSingleTextureHeight)};
+}
 
 void Character::Tick(float deltaTime)
 {
@@ -53,9 +50,9 @@ void Character::Tick(float deltaTime)
     }
 
     // Drawing knight
-    Rectangle knight_source_rect{mFrame * mSingleTextureWidth, 0.f, mRightLeft * mSingleTextureWidth, mSingleTextureHeight}; // knight source rectangle
-    Rectangle knight_dest_pos{mScreenPos.x, mScreenPos.y, (6.f * mSingleTextureWidth), (6.f * mSingleTextureHeight)};        // knight destination is middle of screen
-    DrawTexturePro(mTexture, knight_source_rect, knight_dest_pos, Vector2{}, 0, WHITE);                                      // drawing knight to the middle of the screen with origin in top left corner (0,0)
+    Rectangle knight_source_rect{mFrame * mSingleTextureWidth, 0.f, mRightLeft * mSingleTextureWidth, mSingleTextureHeight};    // knight source rectangle
+    Rectangle knight_dest_pos{mScreenPos.x, mScreenPos.y, (mScale * mSingleTextureWidth), (mScale * mSingleTextureHeight)};     // knight destination is middle of screen
+    DrawTexturePro(mTexture, knight_source_rect, knight_dest_pos, Vector2{}, 0, WHITE);                                         // drawing knight to the middle of the screen with origin in top left corner (0,0)
     
 }
 

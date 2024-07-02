@@ -3,9 +3,8 @@
 class Character
 {
 public:
-    Character();
+    Character(int windowWidth, int windowHeight);
     Vector2 getWorldPos() { return mWorldPos; }
-    void setScreenPos(int winWidth, int winHeight);
     void Tick(float deltaTime);
     void UndoMovement();
 
@@ -26,4 +25,5 @@ private:
     float speed{6.f};
     float mSingleTextureWidth{};
     float mSingleTextureHeight{};
+    float mScale{6.0f};
 };
